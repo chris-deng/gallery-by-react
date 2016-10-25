@@ -1,7 +1,9 @@
 body,html{
   width:100%;
   height:100%;
-  background-color:#222;
+  background-color: #ddd;
+  margin:0;
+  padding:0;
 }
 .content{
   width:100%;
@@ -21,6 +23,22 @@ body,html{
    width:100%;
    height:100%;
    background: #ddd;
+   text-align: center;
+   @at-root {
+     .img-figure{
+       position: absolute;
+       width: 320px;
+       height: 360px;
+       padding: 40px;
+       margin:0;
+       -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+       box-sizing: border-box;
+       background-color: #fff;
+       font-size: 16px;
+       color: #a7a0a2;
+     }
+   }
  }
 /* image -- end*/
 
