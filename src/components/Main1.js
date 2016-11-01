@@ -32,6 +32,15 @@ var getRandomRotate = ()=> {
 class SingleImgComp extends React.Component {
   constructor(props){
     super(props);
+    this.handleClick=this.handleClick.bind(this);     // 坑，为什么呢？
+  }
+  // 图片翻转点击事件
+  handleClick(e){
+
+   this.props.inverse();   // 执行翻转动作
+
+   e.stopPropagation();
+   e.preventDefault();
   }
   render(){
     let styleObj = {};   // 样式对象
@@ -46,12 +55,14 @@ class SingleImgComp extends React.Component {
       styleObj['transform'] = 'rotate(' + this.props.arragneStyle.rotate + 'deg)';
     }
 
+    var figureClassName = 'img-figure';
+    figureClassName += this.props.arragneStyle.isInverse?' is-Inverse':'';
     return (
-      <figure className="img-figure" style={styleObj}>
+      <figure className={ figureClassName } style={styleObj} onClick={this.handleClick}>
         <img src={this.props.data.imageURL} alt={this.props.data.title} />
         <figcaption>
           <h2 className="img-title">{this.props.data.title}</h2>
-          <div className="img-back">
+          <div className="img-back" onClick={this.handleClick}>
             <p>{this.props.data.desc}</p>
           </div>
         </figcaption>
@@ -227,7 +238,7 @@ class GalleryByReactApp extends React.Component {
           isInverse: false          // 默认为正面
         }
       }
-      imgFigures.push(<SingleImgComp data={value} arragneStyle={this.state.imgsArrangeArr[index]} isInverse={this.inverse(index)} ref={'imgFigure'+index} />)
+      imgFigures.push(<SingleImgComp data={value} arragneStyle={this.state.imgsArrangeArr[index]} inverse={this.inverse(index)} ref={'imgFigure'+index} />)
     });
 
 
